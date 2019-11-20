@@ -1,8 +1,15 @@
 package org.pyma.demo.http.filter;
 
+import com.alibaba.fastjson.JSON;
+import org.apache.commons.io.IOUtils;
+import org.pyma.demo.http.entity.ParamObj;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 /**
  * <p>
@@ -49,6 +56,9 @@ public class RequestEnhanceFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest servletRequest = (HttpServletRequest) request;
+//        String json = IOUtils.toString(servletRequest.getInputStream(), StandardCharsets.UTF_8);
+//        ParamObj paramObj = JSON.parseObject(json, ParamObj.class);
+//        System.out.println(paramObj);
         servletRequest.getParameter("");
         chain.doFilter(request,response);
     }
