@@ -1,0 +1,16 @@
+package org.pyma.demo.http;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @author beiluonever@qq.com
+ */
+@SpringBootApplication
+public class HttpApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(HttpApplication.class, args);
+    }
+
+}
