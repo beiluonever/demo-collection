@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * config filters
  * </p>
  *
- * @author zhenpeng.wang@ingeek.com
+ * @author beiluo1994@gmail.com
  * @since 2019-11-20 10:08
  **/
 @Configuration

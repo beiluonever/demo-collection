@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
  * index controller
  * </p>
  *
- * @author zhenpeng.wang@ingeek.com
+ * @author beiluo1994@gmail.com
  * @since 2019-11-20 10:12
  **/
 @RestController

@@ -10,7 +10,7 @@ import java.io.IOException;
  * test enhance request
  * </p>
  *
- * @author zhenpeng.wang@ingeek.com
+ * @author beiluo1994@gmail.com
  * @since 2019-11-20 09:48
  **/
 public class RequestEnhanceFilter implements Filter {
