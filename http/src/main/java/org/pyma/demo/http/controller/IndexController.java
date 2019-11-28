@@ -1,7 +1,13 @@
 package org.pyma.demo.http.controller;
 
+import com.alibaba.fastjson.JSON;
 import org.pyma.demo.http.entity.ParamObj;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -25,6 +31,12 @@ public class IndexController {
     public String indexBody(@RequestBody String param1, @RequestBody Integer param2){
         //curl -X POST localhost:8080/index-body -d '{"param1":"111","param2":222}'  -H 'Content-Type: application/json'
         return String.format("indexBody success get %s , %s",param1,param2);
+    }
+
+    @GetMapping("index-body")
+    public String indexBodyGet(@RequestBody ParamObj json){
+        //curl -X GET localhost:8080/index-body -d '{"param1":"111","param2":222}'  -H 'Content-Type: application/json'
+        return String.format("indexBodyGet success get %s ",json);
     }
 
     @PostMapping("index-body-one")
@@ -57,4 +69,32 @@ public class IndexController {
         return String.format("indexAttribute success get %s , %s",param1,param2);
     }
 
+    @GetMapping("index-list-string")
+    public String indexList(ArrayList<String> msg){
+        return String.format("indexList success get %s", JSON.toJSONString(msg));
+    }
+
+    @GetMapping("index-list-string-param")
+    public String indexListParam(@RequestParam List<String> msg){
+        return String.format("indexListParam success get %s", JSON.toJSONString(msg));
+    }
+
+    @GetMapping("index-list-obj")
+    public String indexListObj(ListParam params){
+        return String.format("indexListParam success get %s", JSON.toJSONString(params));
+    }
+
+
+    private static class ListParam {
+
+        List<ParamObj> params;
+
+        public List<ParamObj> getParams() {
+            return params;
+        }
+
+        public void setParams(List<ParamObj> params) {
+            this.params = params;
+        }
+    }
 }
