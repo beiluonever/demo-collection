@@ -3,6 +3,8 @@ package org.pyma.demo.http;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Map;
+
 /**
  * @author beiluonever@qq.com
  */

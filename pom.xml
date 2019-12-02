@@ -19,6 +19,7 @@
         <module>spring-security</module>
         <module>http</module>
         <module>lock</module>
+        <module>process</module>
     </modules>
 
     <properties>
