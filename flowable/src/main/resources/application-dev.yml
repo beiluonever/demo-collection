@@ -1,0 +1,1 @@
+spring:  datasource:    druid:      driver-class-name: com.mysql.jdbc.Driver      url: jdbc:mysql://192.168.1.67:3333/workflow?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&nullCatalogMeansCurrent=true      password: 123456      username: root
