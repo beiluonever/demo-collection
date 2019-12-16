@@ -10,7 +10,7 @@
     </parent>
     <groupId>net.pyma.demo.lock</groupId>
     <artifactId>consumer</artifactId>
-    <version>${parent.version}</version>
+    <version>1.0</version>
     <name>consumer</name>
     <description>Demo project for lock with consumer</description>
 
