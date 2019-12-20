@@ -9,10 +9,13 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * @author beiluo
+ */
 @Configuration
 public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
 
-    //静态资源配置
+    /**静态资源配置*/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/p/**")
@@ -25,7 +28,7 @@ public class MyWebMvcConfigurerAdapter implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/idm/");
     }
 
-    //跨域配置
+    /**跨域配置*/
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

@@ -28,6 +28,7 @@ import java.util.List;
 
 /**
  * Rest resource for managing groups, used in the editor app.
+ * @author beiluo
  */
 @RestController
 @RequestMapping("/app")

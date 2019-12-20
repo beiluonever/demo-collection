@@ -27,6 +27,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author beiluo
+ */
 @RestController
 @RequestMapping("/app")
 public class EditorUsersResource {
