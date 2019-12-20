@@ -239,6 +239,8 @@ angular.module('flowableModeler')
 
   $scope.onFileSelect = function($files, isIE) {
 
+      $scope.model.loading = true;
+
       for (var i = 0; i < $files.length; i++) {
           var file = $files[i];
 
@@ -254,7 +256,6 @@ angular.module('flowableModeler')
               method: 'POST',
               file: file
           }).progress(function(evt) {
-	      $scope.model.loading = true;
               $scope.model.uploadProgress = parseInt(100.0 * evt.loaded / evt.total);
 
           }).success(function(data) {

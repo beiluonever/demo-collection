@@ -1,11 +1,11 @@
 package net.pyma.demo.flowable.flowableadminui;
 
-import net.pyma.demo.flowable.flowableadminui.config.AppDispatcherServletConfiguration;
 import net.pyma.demo.flowable.flowableadminui.config.ApplicationConfiguration;
+import net.pyma.demo.flowable.flowableadminui.servlet.AppDispatcherServletConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author beiluonever
@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Import;
         ApplicationConfiguration.class,
         AppDispatcherServletConfiguration.class
 })
-@SpringBootApplication(
-        exclude = {SecurityAutoConfiguration.class})
+@EnableTransactionManagement
+@SpringBootApplication
 public class FlowableAdminUiApplication {
 
     public static void main(String[] args) {

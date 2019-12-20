@@ -24,58 +24,33 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 
-/**
- * 重写flowable-ui-xxx-conf 中的 DatabaseConfiguration 类,
- * 包括:flowable-ui-modeler-conf和flowable-ui-admin-conf 的DatabaseConfiguration
- */
 @Configuration
-@EnableTransactionManagement
 public class DatabaseConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseConfiguration.class);
 
+    protected static final String LIQUIBASE_CHANGELOG_PREFIX = "ACT_DE_";
+
     @Bean
-    public Liquibase modelerLiquibase(DataSource dataSource) {
+    public Liquibase liquibase(DataSource dataSource) {
+        LOGGER.info("Configuring Liquibase");
+
         Liquibase liquibase = null;
         try {
             DatabaseConnection connection = new JdbcConnection(dataSource.getConnection());
             Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
-            database.setDatabaseChangeLogTableName("ACT_DE_" + database.getDatabaseChangeLogTableName());
-            database.setDatabaseChangeLogLockTableName("ACT_DE_" + database.getDatabaseChangeLogLockTableName());
+            database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogTableName());
+            database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogLockTableName());
 
             liquibase = new Liquibase("META-INF/liquibase/flowable-modeler-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database);
             liquibase.update("flowable");
             return liquibase;
         } catch (Exception e) {
             throw new InternalServerErrorException("Error creating liquibase database", e);
-        } finally {
-            closeDatabase(liquibase);
-        }
-    }
-
-    @Bean
-    public Liquibase adminLiquibase(DataSource dataSource) {
-        LOGGER.debug("Configuring Liquibase");
-
-        Liquibase liquibase = null;
-        try {
-
-            DatabaseConnection connection = new JdbcConnection(dataSource.getConnection());
-            Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
-            database.setDatabaseChangeLogTableName("ACT_ADM_" + database.getDatabaseChangeLogTableName());
-            database.setDatabaseChangeLogLockTableName("ACT_ADM_" + database.getDatabaseChangeLogLockTableName());
-
-            liquibase = new Liquibase("META-INF/liquibase/flowable-admin-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database);
-            liquibase.update("flowable");
-            return liquibase;
-
-        } catch (Exception e) {
-            throw new InternalServerErrorException("Error creating liquibase database");
         } finally {
             closeDatabase(liquibase);
         }

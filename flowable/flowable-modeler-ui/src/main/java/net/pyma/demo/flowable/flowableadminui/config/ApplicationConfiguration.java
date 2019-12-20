@@ -1,8 +1,8 @@
 package net.pyma.demo.flowable.flowableadminui.config;
 
-import org.flowable.ui.common.service.idm.RemoteIdmService;
+import org.flowable.ui.idm.properties.FlowableIdmAppProperties;
+import org.flowable.ui.idm.servlet.ApiDispatcherServletConfiguration;
 import org.flowable.ui.modeler.properties.FlowableModelerAppProperties;
-import org.flowable.ui.modeler.servlet.ApiDispatcherServletConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -13,18 +13,23 @@ import org.springframework.context.annotation.FilterType;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
+
 @Configuration
-@EnableConfigurationProperties({FlowableModelerAppProperties.class})
+@EnableConfigurationProperties({FlowableIdmAppProperties.class, FlowableModelerAppProperties.class})
 @ComponentScan(basePackages = {
+        "org.flowable.ui.idm.conf",
+        "org.flowable.ui.idm.security",
+        "org.flowable.ui.idm.service",
         "org.flowable.ui.modeler.repository",
         "org.flowable.ui.modeler.service",
+        "org.flowable.ui.common.filter",
         "org.flowable.ui.common.service",
         "org.flowable.ui.common.repository",
-        "org.flowable.ui.common.tenant"},
-        excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = RemoteIdmService.class)
-})
+        "org.flowable.ui.common.security",
+        "org.flowable.ui.common.tenant"}, excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = org.flowable.ui.idm.conf.ApplicationConfiguration.class)})
 public class ApplicationConfiguration {
+
 
     @Bean
     public ServletRegistrationBean apiServlet(ApplicationContext applicationContext) {
