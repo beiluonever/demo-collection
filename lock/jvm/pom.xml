@@ -5,25 +5,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.1.RELEASE</version>
+        <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>net.pyma.demo</groupId>
-    <artifactId>lock</artifactId>
-    <version>1.0</version>
-    <name>lock</name>
-    <packaging>pom</packaging>
-    <description>Demo project for test lock</description>
+    <groupId>net.pyma.demo.lock</groupId>
+    <artifactId>jvm</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>jvm</name>
+    <description>Demo project for JVM's lock</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
-    <modules>
-        <module>consumer</module>
-        <module>product</module>
-        <module>jvm</module>
-    </modules>
 
     <dependencies>
         <dependency>
@@ -31,6 +24,11 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
