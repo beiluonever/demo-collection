@@ -20,7 +20,6 @@
         <module>http</module>
         <module>lock</module>
         <module>process</module>
-        <module>flowable</module>
     </modules>
 
     <properties>
